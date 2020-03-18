@@ -7,7 +7,13 @@
 
 #include "UserInterface.h"
 
-UserInterface::UserInterface(ButtonControler &buttonControler, Screen &screen) {
+UserInterface::UserInterface(ButtonControler &buttonControler, Screen &screen)
+                :
+                myButtonControler(buttonControler), myScreen(screen) {
+    requestedPressure = 0;
+    requestedTargetVolume = 0;
+    requestedBPM = 0;
+    requestedTriggerPressure = 0;
 }
 
 void UserInterface::setup() {
