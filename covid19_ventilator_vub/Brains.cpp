@@ -23,16 +23,20 @@ void Brains::loop(){
         currentRequestedPressure =newRequestedPressure;
     }
     if(currentRequestedTargetVolume!=newRequestedTargetVolume){
-        //target volume has changed dosomething
+        //Calculate the stroke
+        uint32_t newStroke=newRequestedTargetVolume;//TODO make this calculation
+        myBagStepper.setStroke(newStroke);
         currentRequestedTargetVolume=newRequestedTargetVolume;
     }
     if(currentRequestedBPM!=newRequestedBPM){
         //BPM has changed do something
+        int newSpeed=newRequestedBPM;//TODO make this calculation
+        myBagStepper.setSpeed(newSpeed);
         currentRequestedBPM=newRequestedBPM;
     }
     if(currentResquestedTriggerPressure!=newResquestedTriggerPressure){
         //target volume has changed dosomething
-        currentResquestedTriggerPressure!=newResquestedTriggerPressure;
+        currentResquestedTriggerPressure=newResquestedTriggerPressure;
     }
     switch (currentState){
         case STATE_STARTING:{
