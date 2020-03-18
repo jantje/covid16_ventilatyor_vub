@@ -5,11 +5,12 @@
  *      Author: jan
  */
 #pragma once
+#include "Arduino.h"
 
 class Mode1 {
 
     public :
-        Mode1(){};
+        Mode1();
          void setup();
          void loop();
 };

@@ -6,10 +6,11 @@
  */
 
 #pragma once
+#include "Arduino.h"
 
 class Mode2 {
     public :
-        Mode2(){};
+        Mode2();
         void setup();
         void loop();
 };

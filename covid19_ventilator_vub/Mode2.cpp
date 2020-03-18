@@ -12,3 +12,6 @@ void Mode2::setup() {
 
 void Mode2::loop() {
 }
+
+Mode2::Mode2() {
+}

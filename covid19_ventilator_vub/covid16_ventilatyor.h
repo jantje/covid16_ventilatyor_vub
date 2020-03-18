@@ -6,7 +6,11 @@
  */
 
 #pragma once
-
+#include "Arduino.h"
+#include "Stepper.h"
+#include "Mode1.h"
+#include "Mode2.h"
+#include "Brains.h"
 
 typedef enum
 {

@@ -10,5 +10,8 @@
 void Mode1::setup() {
 }
 
+Mode1::Mode1() {
+}
+
 void Mode1::loop() {
 }
