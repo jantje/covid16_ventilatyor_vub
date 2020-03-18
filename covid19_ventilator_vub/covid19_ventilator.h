@@ -28,7 +28,7 @@ typedef enum
 #include "Alarm.h"
 
 extern uint32_t loopMillis;
-
+extern Stream &SerialOutput ;
 
 
 

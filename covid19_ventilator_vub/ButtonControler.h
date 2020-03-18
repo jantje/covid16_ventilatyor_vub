@@ -12,6 +12,7 @@ class ButtonControler {
         ButtonControler(uint8_t button1pin,  uint8_t button2pin, uint8_t button3pin);
          void setup( );
          void loop();
+
 };
 
 
