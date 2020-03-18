@@ -5,8 +5,8 @@
  *      Author: jan
  */
 
-#ifndef BRAINS_H_
-#define BRAINS_H_
+#pragma once
+#include "covid19_ventilator.h"
 
 class Brains {
     private:
@@ -14,10 +14,16 @@ class Brains {
         int currentRequestedTargetVolume;
         int currentRequestedBPM;
         int currentResquestedTriggerPressure;
+
+        MACHINE_STATE currentState=STATE_STARTING;
+        MACHINE_STATE newState=STATE_STARTING;
+        Mode1 myMode1;
+        Mode2 myMode2;
     public :
         Brains();
          void setup();
          void loop();
+
 };
 
-#endif /* BRAINS_H_ */
+
