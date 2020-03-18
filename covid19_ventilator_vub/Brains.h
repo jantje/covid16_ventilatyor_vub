@@ -23,7 +23,8 @@ class Brains {
         Brains();
          void setup();
          void loop();
+         void alarmNoBreathing();
 
 };
 
-
+extern Brains myBrains;

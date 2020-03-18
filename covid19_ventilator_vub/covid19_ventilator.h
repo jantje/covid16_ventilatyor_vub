@@ -25,6 +25,9 @@ typedef enum
 #include "ButtonControler.h"
 #include "Sensors.h"
 #include "UserInterface.h"
+#include "Alarm.h"
+
+extern uint32_t loopMillis;
 
 
 

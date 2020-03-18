@@ -7,6 +7,8 @@
 #define SDA_PIN A4
 #define SDL_PIN 45
 
+#define ALARMPIN (uint8_t) 8
+
 
 
 
@@ -17,8 +19,12 @@ Screen myScreen(SDA_PIN,SDL_PIN);
 ButtonControler myButtonControler(1,2,3);
 UserInterface myUserInterface(myButtonControler,myScreen);
 Sensors mySensors(1,2);
+Alarm myAlarm(ALARMPIN);
 
 Stream &SerialOutput = Serial;
+
+
+uint32_t loopMillis;
 
 void setup()
 {
@@ -30,11 +36,15 @@ void setup()
     myBagStepper.setup();
     SerialOutput.print(F("done\nmySensors.setup() "));
     mySensors.setup();
+    SerialOutput.print(F("done\nmyAlarm.setup() "));
+    myAlarm.setup();
 }
 
 // The loop function is called in an endless loop
 void loop()
 {
+    loopMillis=millis();
+    myAlarm.loop();
     mySensors.loop();
     myUserInterface.loop();
     myBrains.loop();

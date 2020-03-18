@@ -5,7 +5,7 @@
  *      Author: jan
  */
 #pragma once
-#include "Arduino.h"
+#include "covid19_ventilator.h"
 #define MAX_TIME_BETWEEN_BREATH_CYCLES 5000  //TODO this is important number !!!!
 typedef enum
 {

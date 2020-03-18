@@ -16,8 +16,9 @@ void Stepper::setup() {
 
 void Stepper::loop() {
     // emergency breathing
-    if (state==STATE_WAITING_TO_START_CYCLE && ((millis()-timeSinceLastCycle)>MAX_TIME_BETWEEN_BREATH_CYCLES)){
+    if (state==STATE_WAITING_TO_START_CYCLE && ((loopMillis-timeSinceLastCycle)>MAX_TIME_BETWEEN_BREATH_CYCLES)){
         startCycle();
+        myBrains.alarmNoBreathing();
     }
 }
 
