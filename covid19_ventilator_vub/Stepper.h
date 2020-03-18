@@ -19,8 +19,10 @@ class Stepper {
         Stepper(uint8_t stepPin,  uint8_t dirPin, uint8_t enablepin);
          void setup( );
          void loop();
-         int setSpeed(int newSpeed);
-         int setEnable(bool newEnable);
+         int setSpeed(int speed);
+         int setEnable(bool enable);
+         int setStroke(int stroke);
+         int setBPM(int beetsPerMinute);
 
 
 };

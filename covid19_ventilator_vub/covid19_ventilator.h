@@ -7,10 +7,7 @@
 
 #pragma once
 #include "Arduino.h"
-#include "Stepper.h"
-#include "Mode1.h"
-#include "Mode2.h"
-#include "Brains.h"
+
 
 typedef enum
 {
@@ -20,7 +17,15 @@ typedef enum
     STATE_RUNNING_MODE2
 }MACHINE_STATE;
 
-extern int currentPressure;
-extern int currentTargetVolume;
-extern int currentBPM;
-extern int currentTriggerPressure;
+#include "Stepper.h"
+#include "Mode1.h"
+#include "Mode2.h"
+#include "Brains.h"
+#include "Screen.h"
+#include "ButtonControler.h"
+#include "Sensors.h"
+#include "UserInterface.h"
+
+
+
+
