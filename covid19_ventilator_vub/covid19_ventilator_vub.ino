@@ -17,7 +17,7 @@ Brains myBrains;
 Stepper myBagStepper(BAG_STEPPER_PIN,  BAG_STEPPER_DIR_PIN, BAG_STEPPER_ENABLE_PIN);
 
 
-UserInterface myUserInterface(SDA_PIN,SDL_PIN);
+UserInterface myUserInterface;
 Sensors mySensors(1,2);
 Alarm myAlarm(ALARMPIN);
 
@@ -40,6 +40,8 @@ void setup()
     mySensors.setup();
     SerialOutput.print(F("done\nmyAlarm.setup() "));
     myAlarm.setup();
+    SerialOutput.print(F("done\nmyLogger.setup() "));
+    myLogger.setup();
     SerialOutput.println(F("done\nSetup Done"));
 }
 
@@ -51,6 +53,6 @@ void loop()
     mySensors.loop();
     myUserInterface.loop();
     myBrains.loop();
-
+    myLogger.loop();
 
 }

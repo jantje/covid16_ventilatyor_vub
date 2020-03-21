@@ -33,7 +33,7 @@ void Button::loop() {
 					pressedSince = loopMillis;
 				}
 			} else {
-				lastDebounceTime = millis();
+				lastDebounceTime = loopMillis;
 				internalState = BOUNCING;
 			}
 		}

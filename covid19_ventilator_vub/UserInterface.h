@@ -17,7 +17,7 @@ class UserInterface {
         int requestedTriggerPressure;
         Button buttons[12];
     public:
-        UserInterface(uint8_t pinSDA, uint8_t pinSDL);
+        UserInterface();
         void setup();
         void loop();
         int getRequestedPressure() const {

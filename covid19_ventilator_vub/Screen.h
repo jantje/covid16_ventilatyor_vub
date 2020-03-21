@@ -14,10 +14,11 @@ class Screen {
         LiquidCrystal_I2C display;
 
     public :
-        Screen(uint8_t pinSDA, uint8_t pinSDL);
+        Screen();
          void setup();
-         void loop();
-         void refreshValue(int value,int xcor,int ycor);
+         void loop(){};
+         void refreshValue_centi(int value,int xcor,int ycor);
+         void refreshValue_deci(int value,int xcor,int ycor);
 
 
 };

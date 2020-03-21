@@ -7,8 +7,8 @@
 
 #include "UserInterface.h"
 
-UserInterface::UserInterface(uint8_t pinSDA, uint8_t pinSDL) :
-		myScreen(pinSDA, pinSDL) {
+UserInterface::UserInterface() :
+		myScreen() {
 	Screen myScreen();
 	requestedPressure = 0;
 	requestedTargetVolume = 0;
@@ -28,10 +28,12 @@ void UserInterface::setup() {
 }
 
 void UserInterface::loop() {
-	static uint32_t lastactionTime = loopMillis;
-	if (loopMillis - lastactionTime > 10) {
-		lastactionTime=loopMillis;
-		uint8_t buttonJump[sizeof(buttons)];
+	static uint32_t lastReadTime = loopMillis;
+	static uint32_t lastPrintTime = loopMillis;
+
+	static int buttonJump[sizeof(buttons)];
+	if (loopMillis - lastReadTime > 10) {
+		lastReadTime = loopMillis;
 		myScreen.loop();
 		for (unsigned int curButton = 0; curButton < sizeof(buttons);
 				curButton++) {
@@ -41,7 +43,7 @@ void UserInterface::loop() {
 
 		requestedTriggerPressure = requestedTriggerPressure + buttonJump[7]
 				- buttonJump[3];
-		requestedBPM = requestedBPM + buttonJump[8] - buttonJump[4];
+		requestedBPM = requestedBPM + (buttonJump[8] - buttonJump[4]) * 5;
 		requestedTargetVolume = requestedTargetVolume + buttonJump[9]
 				- buttonJump[5];
 		requestedPressure = requestedPressure + buttonJump[10] - buttonJump[6];
@@ -57,11 +59,30 @@ void UserInterface::loop() {
 		if (requestedPressure < 0) {
 			requestedPressure = 0;
 		}
-
-		myScreen.refreshValue(requestedTriggerPressure, 12, 3);
-		myScreen.refreshValue(requestedBPM, 12, 2);
-		myScreen.refreshValue(requestedTargetVolume, 12, 1);
-		myScreen.refreshValue(requestedPressure, 12, 0);
+	} else {
+		if (loopMillis - lastPrintTime > 10) {
+			lastPrintTime=loopMillis;
+			static int delayCounter = 0;
+			delayCounter++;
+			switch (delayCounter % 4) {
+			case 0: {
+				myScreen.refreshValue_deci(requestedTriggerPressure, 12, 3);
+				break;
+			}
+			case 1: {
+				myScreen.refreshValue_deci(requestedBPM, 12, 2);
+				break;
+			}
+			case 2: {
+				myScreen.refreshValue_deci(requestedTargetVolume, 12, 1);
+				break;
+			}
+			case 3: {
+				myScreen.refreshValue_deci(requestedPressure, 12, 0);
+				break;
+			}
+			}
+		}
 
 		//
 		//    if (Display_setpoint_trigger != setpointData.trigger) {
@@ -103,3 +124,4 @@ void UserInterface::loop() {
 		//    }
 	}
 }
+

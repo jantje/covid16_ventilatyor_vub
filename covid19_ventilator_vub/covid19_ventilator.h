@@ -25,6 +25,7 @@ typedef enum
 #include "Sensors.h"
 #include "UserInterface.h"
 #include "Alarm.h"
+#include "Logger.h"
 
 extern uint32_t loopMillis;
 extern Stream &SerialOutput ;
