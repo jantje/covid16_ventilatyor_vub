@@ -8,6 +8,11 @@
 #include "Logger.h"
 Logger myLogger;
 
+#if SERIAL_TX_BUFFER_SIZE <500
+#error you need to add the following define to the command line -DSERIAL_TX_BUFFER_SIZE=500
+// enlarging the the tx serial buffer reduces delay caused by serial prints
+#endif
+
 void Logger::setup() {
 	setupMillis = millis();
 }
