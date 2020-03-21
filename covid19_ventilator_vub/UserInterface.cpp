@@ -28,10 +28,9 @@ UserInterface::UserInterface() :
 
 void UserInterface::setup() {
 	myScreen.setup();
-	uint8_t buttonPins[sizeof(buttons)] = { 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3,
-			2 };
-	unsigned int curButton;
-	for (curButton = 0; curButton < sizeof(buttons); curButton++) {
+	uint8_t buttonPins[NUMBUTTONS] = { 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3,	2 };
+
+	for (unsigned int curButton = 0; curButton < NUMBUTTONS; curButton++) {
 		buttons[curButton].setPin(buttonPins[curButton]);
 		buttons[curButton].setup();
 	}
@@ -41,11 +40,11 @@ void UserInterface::loop() {
 	static uint32_t lastReadTime = loopMillis;
 	static uint32_t lastPrintTime = loopMillis;
 
-	static int buttonJump[sizeof(buttons)];
+	static int buttonJump[NUMBUTTONS];
 	if (loopMillis - lastReadTime > 10) {
 		lastReadTime = loopMillis;
 		myScreen.loop();
-		for (unsigned int curButton = 0; curButton < sizeof(buttons);
+		for ( unsigned int curButton= 0; curButton < NUMBUTTONS;
 				curButton++) {
 			buttons[curButton].loop();
 			buttonJump[curButton] = buttons[curButton].jumpValue();

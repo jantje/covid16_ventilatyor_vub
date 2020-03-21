@@ -7,6 +7,7 @@
 #pragma once
 #include "covid19_ventilator.h"
 #include "LiquidCrystal_I2C.h"
+#define NUMBUTTONS 12
 
 class UserInterface {
 
@@ -15,7 +16,7 @@ class UserInterface {
         int requestedTargetVolume;
         int requestedBPM;
         int requestedTriggerPressure;
-        Button buttons[12];
+        Button buttons[NUMBUTTONS];
     public:
         UserInterface();
         void setup();
