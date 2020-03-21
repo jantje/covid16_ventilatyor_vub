@@ -5,15 +5,25 @@
  *      Author: jan
  */
 
+/* Array Position  - Function
+         0           Mute
+         1           Breath Hold
+         2           Start/Stop
+        7/3          Trig Up/Down
+        8/4          BPM Up/Down
+        9/5          V Up/Down
+       10/6          P Up/Down
+         11          Mode
+*/
 #include "UserInterface.h"
 
 UserInterface::UserInterface() :
 		myScreen() {
 	Screen myScreen();
-	requestedPressure = 0;
-	requestedTargetVolume = 0;
-	requestedBPM = 0;
-	requestedTriggerPressure = 0;
+	requestedPressure = 20*10;
+	requestedTargetVolume = 600*10;
+	requestedBPM = 12*10;
+	requestedTriggerPressure = 8*10;
 }
 
 void UserInterface::setup() {
