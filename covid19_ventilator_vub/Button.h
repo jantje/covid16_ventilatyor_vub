@@ -15,6 +15,8 @@ class Button {
         uint8_t buttonPin;
         bool officialState;
         uint32_t pressedSince;
+	uint32_t lastRequestedValueTime;
+
     public :
         Button();
         void setPin(uint8_t buttonPin);
