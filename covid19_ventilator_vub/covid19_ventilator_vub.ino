@@ -15,9 +15,9 @@
 
 Brains myBrains;
 Stepper myBagStepper(BAG_STEPPER_PIN,  BAG_STEPPER_DIR_PIN, BAG_STEPPER_ENABLE_PIN);
-Screen myScreen(SDA_PIN,SDL_PIN);
-ButtonControler myButtonControler(1,2,3);
-UserInterface myUserInterface(myButtonControler,myScreen);
+
+
+UserInterface myUserInterface(SDA_PIN,SDL_PIN);
 Sensors mySensors(1,2);
 Alarm myAlarm(ALARMPIN);
 

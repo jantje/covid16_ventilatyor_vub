@@ -6,22 +6,23 @@
  */
 #pragma once
 #include "covid19_ventilator.h"
+#include "LiquidCrystal_I2C.h"
 
 class UserInterface {
-        ButtonControler &myButtonControler;
-        Screen &myScreen;
+
+        Screen myScreen;
         int requestedPressure;
         int requestedTargetVolume;
         int requestedBPM;
         int requestedTriggerPressure;
+        Button buttons[12];
     public:
-        UserInterface(ButtonControler &buttonControler, Screen &screen);
+        UserInterface(uint8_t pinSDA, uint8_t pinSDL);
         void setup();
         void loop();
         int getRequestedPressure() const {
             return requestedPressure;
         }
-        ;
 
         int getRequestedTargetVolume() const {
             return requestedTargetVolume;
@@ -34,6 +35,7 @@ class UserInterface {
         int getRequestedBpm() const {
             return requestedBPM;
         }
+        bool IsAlarmDisabled() const;
 };
 extern UserInterface myUserInterface;
 
