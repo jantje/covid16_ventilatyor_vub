@@ -5,13 +5,16 @@
  *      Author: gast1
  */
 
-#ifndef SERIALREADER_H_
-#define SERIALREADER_H_
+#pragma once
+#include "SerialStringReader.h"
 
 class SerialReader {
+	SerialStringReader myReader;
 public:
 	SerialReader();
-	virtual ~SerialReader();
+     void setup();
+     void loop();
 };
 
-#endif /* SERIALREADER_H_ */
+extern SerialReader mySerialReader;
+

@@ -22,6 +22,7 @@ typedef enum
 #include "UserInterface.h"
 #include "Alarm.h"
 #include "Logger.h"
+#include "SerialReader.h"
 
 extern uint32_t loopMillis;
 extern uint32_t loopCounter ;

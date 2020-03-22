@@ -71,5 +71,16 @@ void Logger::loop() {
 	}
 }
 
-void Logger::setLogDelay(uint16_t logDelay) {
+void Logger::setLogDelay(uint16_t newLogDelay) {
+
+			logDelay = newLogDelay;
+			SerialOutput.print("Setting log delay :");
+						SerialOutput.println(logDelay);
+}
+
+void Logger::resend() {
+	logedRequestedBPM=-1;
+	logedReqestedTargetVolume=-1;
+	logedRequestedTriggerPressure=-1;
+	logedRequestedPressure=-1;
 }
