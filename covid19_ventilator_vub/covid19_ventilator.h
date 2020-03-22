@@ -18,10 +18,6 @@ typedef enum
 }MACHINE_STATE;
 #include "pins.h"
 #include "Button.h"
-#include "Stepper.h"
-#include "Mode1.h"
-#include "Mode2.h"
-#include "Brains.h"
 #include "Screen.h"
 #include "Sensors.h"
 #include "UserInterface.h"

@@ -6,9 +6,6 @@
 
 
 
-Brains myBrains;
-Stepper myBagStepper(BAG_STEPPER_PIN,  BAG_STEPPER_DIR_PIN, BAG_STEPPER_ENABLE_PIN);
-
 
 UserInterface myUserInterface;
 Sensors mySensors(1,2);
@@ -25,10 +22,6 @@ void setup()
     Serial.begin(115200);
     SerialOutput.print(F("Starting ventilator\nmyUserInterface.setup() "));
     myUserInterface.setup();
-    SerialOutput.print(F("done\nmyBrains.setup() "));
-    myBrains.setup();
-    SerialOutput.print(F("done\nmyBagStepper.setup() "));
-    myBagStepper.setup();
     SerialOutput.print(F("done\nmySensors.setup() "));
     mySensors.setup();
     SerialOutput.print(F("done\nmyAlarm.setup() "));
@@ -50,7 +43,6 @@ void loop()
     myAlarm.loop();
     mySensors.loop();
     myUserInterface.loop();
-    myBrains.loop();
     myLogger.loop();
 
 }
