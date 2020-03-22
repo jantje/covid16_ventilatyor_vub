@@ -19,12 +19,14 @@ typedef enum
 #include "pins.h"
 #include "Button.h"
 #include "Screen.h"
-#include "Sensors.h"
 #include "UserInterface.h"
 #include "Alarm.h"
 #include "Logger.h"
 
 extern uint32_t loopMillis;
+extern uint32_t loopCounter ;
+extern uint32_t PrefLoopMillis ;
+extern uint16_t maxLoopDuration ;
 extern Stream &SerialOutput ;
 
 

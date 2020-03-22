@@ -19,19 +19,6 @@ void Logger::setup() {
 
 void Logger::loop() {
 
-	static uint32_t loopCounter = 0;
-	static uint32_t PrefLoopMillis = loopMillis;
-	static uint16_t maxLoopDuration = 0;
-	uint16_t LastloopDuration = loopMillis - PrefLoopMillis;
-
-	maxLoopDuration = max(maxLoopDuration, LastloopDuration);
-	PrefLoopMillis = loopMillis;
-	loopCounter++;
-
-	if (millis()-loopMillis>2){
-		// if the loop took to long don't log
-		return;
-	}
 	static uint32_t lastMonitoringReport;
 	if ((loopMillis - lastMonitoringReport > logDelay) && (logDelay>0)) {
 		lastMonitoringReport = loopMillis;

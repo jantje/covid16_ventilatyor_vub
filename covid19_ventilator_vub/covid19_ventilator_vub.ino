@@ -8,7 +8,6 @@
 
 
 UserInterface myUserInterface;
-Sensors mySensors(1,2);
 Alarm myAlarm(ALARMPIN);
 
 
@@ -16,14 +15,15 @@ Stream &SerialOutput = Serial;
 
 
 uint32_t loopMillis;
+ uint32_t loopCounter = 0;
+ uint32_t PrefLoopMillis = loopMillis;
+ uint16_t maxLoopDuration = 0;
 
 void setup()
 {
     Serial.begin(115200);
     SerialOutput.print(F("Starting ventilator\nmyUserInterface.setup() "));
     myUserInterface.setup();
-    SerialOutput.print(F("done\nmySensors.setup() "));
-    mySensors.setup();
     SerialOutput.print(F("done\nmyAlarm.setup() "));
     myAlarm.setup();
     SerialOutput.print(F("done\nmyLogger.setup() "));
@@ -38,11 +38,21 @@ void setup()
 void loop()
 {
     loopMillis=millis();
+	uint16_t LastloopDuration = loopMillis - PrefLoopMillis;
+	maxLoopDuration = max(maxLoopDuration, LastloopDuration);
+	PrefLoopMillis = loopMillis;
+	loopCounter++;
+
     //TOFIX enable when done
     //beademing_loop();
     myAlarm.loop();
-    mySensors.loop();
+	if (millis()-loopMillis<=2){
     myUserInterface.loop();
-    myLogger.loop();
+	}
+
+	if (millis()-loopMillis<=2){
+		myLogger.loop();
+	}
+
 
 }
