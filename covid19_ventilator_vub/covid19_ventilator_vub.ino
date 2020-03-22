@@ -1,13 +1,6 @@
 
 #include "covid19_ventilator.h"
-#define BAG_STEPPER_PIN     (uint8_t) 4
-#define BAG_STEPPER_DIR_PIN  (uint8_t) 5
-#define BAG_STEPPER_ENABLE_PIN (uint8_t) 6
 
-#define SDA_PIN A4
-#define SDL_PIN 45
-
-#define ALARMPIN (uint8_t) 8
 
 
 
@@ -42,6 +35,9 @@ void setup()
     myAlarm.setup();
     SerialOutput.print(F("done\nmyLogger.setup() "));
     myLogger.setup();
+    SerialOutput.println(F("done\nmyLogger Done"));
+    //TOFIX when sensors are not connected go into alarm instead of blocking
+    //beademing_setup();
     SerialOutput.println(F("done\nSetup Done"));
 }
 
@@ -49,6 +45,8 @@ void setup()
 void loop()
 {
     loopMillis=millis();
+    //TOFIX enable when done
+    //beademing_loop();
     myAlarm.loop();
     mySensors.loop();
     myUserInterface.loop();

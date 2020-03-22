@@ -8,41 +8,31 @@
 
 #include "covid19_ventilator.h"
 
+typedef enum {
+	ALERT_NO_BREATHING = 0, ALERT_PRESSURE_TO_HIGH, ALERT_LAST_ALERT_TYPE
+} ALERT_TYPES;
+typedef enum {
+	ALERT_STATE_MUTED = 0,   //first startup of the machine
+	ALERT_STATE_OFF,
+	ALERT_STATE_ON,
+} ALARM_STATE;
 class Alarm {
-        uint32_t LastNoBreathingAlert;
-        uint32_t LastPressureToHighAlert;
-        uint32_t LastPressureZeroAlert;
-        uint32_t LastNoFlowAlert;
-        uint32_t LastMechanicalFailureAlert;
-        uint32_t LastPowerFailureAlert;
-        uint8_t pin;
-        uint8_t allertCounter;
-    public :
-        Alarm(uint8_t alarmPin);
-         void setup();
-         void loop();
-         void alarmNoBreathing(){
-             allert(LastNoBreathingAlert);
-         }
-         void alarmPressureToHigh(){
-             allert(LastPressureToHighAlert);
-         }
-         void alarmPressureZero(){
-             allert(LastPressureZeroAlert);
-         }
-         void alarmNoFlow(){
-             allert(LastNoFlowAlert);
-         }
-         void alarmMechanicalFailure(){
-             allert(LastMechanicalFailureAlert);
-         }
-         void alarmPowerFailure(){
-             allert(LastNoBreathingAlert);
-         }
+
+public:
+	Alarm(uint8_t alarmPin);
+	void setup();
+	void loop();
+	void allert(ALERT_TYPES alert);
+	void muteAllert();
+
 private:
-         void allert(uint32_t& timer);
+	uint32_t lastMuteTime;
+	uint8_t pin;
+	int allerts[ALERT_LAST_ALERT_TYPE];
+	ALARM_STATE curState;
+	bool soundHorn;
+	bool muteRequested;
 };
 
 extern Alarm myAlarm;
-
 

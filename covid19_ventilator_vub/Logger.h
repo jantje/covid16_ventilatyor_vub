@@ -11,11 +11,13 @@
 
 class Logger {
 	uint32_t setupMillis;
+	uint16_t logDelay;
 
 public :
-	Logger(){};
+	Logger(){logDelay=1000;};
      void setup();
      void loop();
+     void setLogDelay(uint16_t logDelay);
 };
 
 extern Logger myLogger;

@@ -16,6 +16,7 @@ typedef enum
     STATE_RUNNING_MODE1,
     STATE_RUNNING_MODE2
 }MACHINE_STATE;
+#include "pins.h"
 #include "Button.h"
 #include "Stepper.h"
 #include "Mode1.h"

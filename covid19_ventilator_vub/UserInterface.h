@@ -36,7 +36,14 @@ class UserInterface {
         int getRequestedBpm() const {
             return requestedBPM;
         }
-        bool IsAlarmDisabled() const;
+
+        void flashScreen(uint16_t frequency) {
+        	myScreen.flashScreen(frequency);
+        }
+        void flashScreenStop() {
+        	myScreen.flashScreenStop();
+        }
+
 };
 extern UserInterface myUserInterface;
 

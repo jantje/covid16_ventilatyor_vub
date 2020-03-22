@@ -33,7 +33,7 @@ void Logger::loop() {
 		return;
 	}
 	static uint32_t lastMonitoringReport;
-	if (loopMillis - lastMonitoringReport > 40) {
+	if ((loopMillis - lastMonitoringReport > logDelay) && (logDelay>0)) {
 		lastMonitoringReport = loopMillis;
 		SerialOutput.print("bpm=");
 		SerialOutput.println(myUserInterface.getRequestedBpm());
