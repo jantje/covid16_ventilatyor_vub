@@ -22,7 +22,19 @@ UserInterface::UserInterface() :
 
 void UserInterface::setup() {
 	myScreen.setup();
-	uint8_t buttonPins[NUMBUTTONS] = { 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+	uint8_t buttonPins[NUMBUTTONS] = {	BUTTON_MUTE,
+										BUTTOM_BREATH,
+										BUTTON_START_STOP,
+										BUTTON_TRIG_UP,
+										BUTTON_TRIG_DOWN,
+										BUTTON_BPM_UP,
+										BUTTON_BPM_DOWN,
+										BUTTON_VOLUME_UP,
+										BUTTON_VOLUME_DOWN,
+										BUTTON_VOLUMEPRESSURE_UP,
+										BUTTON_VOLUMEPRESSURE_DOWN,
+										BUTTON_MODE
+									 };
 
 	for (unsigned int curButton = 0; curButton < NUMBUTTONS; curButton++) {
 		buttons[curButton].setPin(buttonPins[curButton]);
