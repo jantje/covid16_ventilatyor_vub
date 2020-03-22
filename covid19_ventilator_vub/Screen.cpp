@@ -47,13 +47,12 @@ void Screen::print(int xcor, int ycor, int value) {
 }
 
 void Screen::flashScreen(uint16_t frequency)  {
-	flashTimer=loopMillis;
 	flashFrequency=frequency;
 }
 
 void Screen::loop() {
 	if(flashFrequency>0){
-		if(loopMillis - flashTimer>500){
+		if(loopMillis - flashTimer>flashFrequency){
 			flashTimer=loopMillis;
 			static bool backLight=0;
 			display.setBacklight(backLight);

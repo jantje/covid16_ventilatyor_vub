@@ -12,6 +12,7 @@ Alarm::Alarm(uint8_t alarmPin) {
 	curState = ALERT_STATE_OFF;
 	soundHorn = false;
 	lastMuteTime = 0;
+	muteRequested = false;
 }
 
 void Alarm::setup() {
@@ -33,7 +34,8 @@ void Alarm::loop() {
 	case ALERT_STATE_MUTED: {
 		if (loopMillis - lastMuteTime > 60000) {
 			curState = ALERT_STATE_OFF;
-			soundHorn = 0;
+			myUserInterface.flashScreenStop();
+			soundHorn = false;
 			for (int curAlert = 0; curAlert < ALERT_LAST_ALERT_TYPE;
 					curAlert++) {
 				allerts[curAlert] = 0;
@@ -45,9 +47,9 @@ void Alarm::loop() {
 		if (muteRequested) {
 			analogWrite(pin, 0);
 			lastMuteTime = loopMillis;
-			curState == ALERT_STATE_MUTED;
+			curState = ALERT_STATE_MUTED;
 			muteRequested = false;
-			myUserInterface.flashScreenStop();
+			myUserInterface.flashScreen(1000);
 			break;
 		}
 

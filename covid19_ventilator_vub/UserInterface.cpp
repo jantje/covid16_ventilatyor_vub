@@ -4,20 +4,9 @@
  *  Created on: 18 mrt. 2020
  *      Author: jan
  */
+#define MAX_LCD_WRITES 1
 
 
-#define BUTTON_MUTE 13
-#define BUTTOM_BREATH 12
-#define BUTTON_START_STOP 11
-#define BUTTON_TRIG_UP 7
-#define BUTTON_TRIG_DOWN 3
-#define BUTTON_BPM_UP 8
-#define BUTTON_BPM_DOWN 4
-#define BUTTON_VOLUME_UP 9
-#define BUTTON_VOLUME_DOWN 5
-#define BUTTON_VOLUMEPRESSURE_UP 10
-#define BUTTON_VOLUMEPRESSURE_DOWN 6
-#define BUTTON_MODE 2
 //TODO deze arrays aanpak is niet zo goed omdat je zo 2 indirecties hebt
 //verzin iets beter
 #include "UserInterface.h"
@@ -77,6 +66,12 @@ void UserInterface::loop() {
 
 		static int counter=0;
 
+		//disable based on start stop
+		//mute the alarm if needed
+		if (digitalRead(BUTTON_START_STOP) == LOW) {
+			//myAlarm.muteAllert();
+		}
+
 		//mute the alarm if needed
 		if (digitalRead(BUTTON_MUTE) == LOW) {
 			myAlarm.muteAllert();
@@ -86,25 +81,30 @@ void UserInterface::loop() {
 		if (digitalRead(BUTTOM_BREATH) == LOW) {
 			myAlarm.allert(ALERT_NO_BREATHING);
 		}
+		int lcdWrites=0;
 		static int prefRequestedTriggerPressure = -1;
 		if (prefRequestedTriggerPressure != requestedTriggerPressure) {
 			myScreen.refreshValue_deci(requestedTriggerPressure, 12, 3);
 			prefRequestedTriggerPressure = requestedTriggerPressure;
+			lcdWrites++;
 		}
 		static int prefrequestedBPM = -1;
-		if (prefrequestedBPM != requestedBPM) {
+		if ((prefrequestedBPM != requestedBPM) && (lcdWrites<MAX_LCD_WRITES)) {
 			myScreen.refreshValue_deci(requestedBPM, 12, 2);
 			prefrequestedBPM = requestedBPM;
+			lcdWrites++;
 		}
 		static int prefrequestedTargetVolume = -1;
-		if (prefrequestedTargetVolume != requestedTargetVolume) {
+		if ((prefrequestedTargetVolume != requestedTargetVolume) && (lcdWrites<MAX_LCD_WRITES)) {
 			myScreen.refreshValue_deci(requestedTargetVolume, 12, 1);
 			prefrequestedTargetVolume = requestedTargetVolume;
+			lcdWrites;
 		}
 		static int prefRequestedPressure = -1;
-		if (prefRequestedPressure != requestedPressure) {
+		if ((prefRequestedPressure != requestedPressure) && (lcdWrites<MAX_LCD_WRITES)) {
 			myScreen.refreshValue_deci(requestedPressure, 12, 0);
 			prefRequestedPressure = requestedPressure;
+			lcdWrites;
 		}
 
 	}
