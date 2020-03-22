@@ -17,19 +17,42 @@ void Logger::setup() {
 	setupMillis = millis();
 }
 
+int log(const char *key, int oldValue, int newValue) {
+	if (oldValue != newValue) {
+		SerialOutput.print(key);
+		SerialOutput.println(newValue);
+	}
+	return newValue;
+}
+
+Logger::Logger() {
+	logDelay=1000;
+	logedRequestedBPM =0;
+	logedReqestedTargetVolume = 0;
+	logedRequestedTriggerPressure =0;
+	logedRequestedPressure = 0;
+	setupMillis=0;
+}
+
+
 void Logger::loop() {
 
 	static uint32_t lastMonitoringReport;
-	if ((loopMillis - lastMonitoringReport > logDelay) && (logDelay>0)) {
+	if ((loopMillis - lastMonitoringReport > logDelay) && (logDelay > 0)) {
 		lastMonitoringReport = loopMillis;
-		SerialOutput.print("bpm=");
-		SerialOutput.println(myUserInterface.getRequestedBpm());
-		SerialOutput.print("Vol=");
-		SerialOutput.println(myUserInterface.getRequestedTargetVolume());
-		SerialOutput.print("Trig=");
-		SerialOutput.println(myUserInterface.getRequestedTriggerPressure());
-		SerialOutput.print("Pres=");
-		SerialOutput.println(myUserInterface.getRequestedPressure());
+		SerialOutput.print("clock=");
+		SerialOutput.println(loopMillis);
+		logedRequestedBPM = log("bpm=", logedRequestedBPM,
+				myUserInterface.getRequestedBpm());
+		logedReqestedTargetVolume = log("Vol=", logedReqestedTargetVolume,
+				myUserInterface.getRequestedTargetVolume());
+		logedRequestedTriggerPressure = log("Trig=", logedRequestedTriggerPressure,
+				myUserInterface.getRequestedTriggerPressure());
+		logedRequestedPressure = log("Pres=", logedRequestedPressure,
+				myUserInterface.getRequestedPressure());
+		static int testcounter=0;
+		testcounter= log("test=", testcounter,++testcounter);
+
 	} else {
 		static uint32_t lastPerformanceReport;
 		if (loopMillis - lastPerformanceReport > 1000) {
@@ -39,10 +62,14 @@ void Logger::loop() {
 			SerialOutput.print("LoopCntr:");
 			SerialOutput.println(loopCounter);
 			SerialOutput.print("Avg Time * 1000:");
-			SerialOutput.println((loopMillis - setupMillis )*1000 / loopCounter);
+			SerialOutput.println(
+					(loopMillis - setupMillis) * 1000 / loopCounter);
 			SerialOutput.print("Max loop :");
 			SerialOutput.println(maxLoopDuration);
-			maxLoopDuration=0;
+			maxLoopDuration = 0;
 		}
 	}
+}
+
+void Logger::setLogDelay(uint16_t logDelay) {
 }

@@ -12,9 +12,13 @@
 class Logger {
 	uint32_t setupMillis;
 	uint16_t logDelay;
+	int logedRequestedBPM;
+	int logedReqestedTargetVolume ;
+	int logedRequestedTriggerPressure ;
+	int logedRequestedPressure ;
 
 public :
-	Logger(){logDelay=1000;};
+	Logger();
      void setup();
      void loop();
      void setLogDelay(uint16_t logDelay);
