@@ -66,11 +66,7 @@ void UserInterface::loop() {
 
 		static int counter=0;
 
-		//disable based on start stop
-		//mute the alarm if needed
-		if (digitalRead(BUTTON_START_STOP) == LOW) {
-			//myAlarm.muteAllert();
-		}
+
 
 		//mute the alarm if needed
 		if (digitalRead(BUTTON_MUTE) == LOW) {
@@ -98,13 +94,13 @@ void UserInterface::loop() {
 		if ((prefrequestedTargetVolume != requestedTargetVolume) && (lcdWrites<MAX_LCD_WRITES)) {
 			myScreen.refreshValue_deci(requestedTargetVolume, 12, 1);
 			prefrequestedTargetVolume = requestedTargetVolume;
-			lcdWrites;
+			lcdWrites++;
 		}
 		static int prefRequestedPressure = -1;
 		if ((prefRequestedPressure != requestedPressure) && (lcdWrites<MAX_LCD_WRITES)) {
 			myScreen.refreshValue_deci(requestedPressure, 12, 0);
 			prefRequestedPressure = requestedPressure;
-			lcdWrites;
+			lcdWrites++;
 		}
 
 	}
