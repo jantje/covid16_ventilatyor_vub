@@ -22,11 +22,11 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Wire/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/LiquidCrystal_I2C-master}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/SPI/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Adafruit_BME280_Library-master}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Adafruit_MPL3115A2_Library-master}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Adafruit_Sensor-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/Adafruit_BME280}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/adafruit_sensor}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/LiquidCrystal_I2C}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/Adafruit_MPL3115A2}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.265037449" name="CPP bron bestanden" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -35,11 +35,11 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Wire/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/LiquidCrystal_I2C-master}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/SPI/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Adafruit_BME280_Library-master}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Adafruit_MPL3115A2_Library-master}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Adafruit_Sensor-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/Adafruit_BME280}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/adafruit_sensor}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/LiquidCrystal_I2C}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/Adafruit_MPL3115A2}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.494179459" name="C bron bestanden" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -48,11 +48,11 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Wire/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/LiquidCrystal_I2C-master}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/SPI/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Adafruit_BME280_Library-master}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Adafruit_MPL3115A2_Library-master}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libraries/Adafruit_Sensor-master}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/adafruit_sensor}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/Adafruit_BME280}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/LiquidCrystal_I2C}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/covid19_ventilator_vub/libs/Adafruit_MPL3115A2}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.2010418916" name="Assembly bron bestanden" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
