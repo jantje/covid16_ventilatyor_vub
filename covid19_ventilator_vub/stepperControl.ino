@@ -5,7 +5,7 @@ int STEPPER_speed = 0;
 int STEPPER_direction = 0;
 unsigned int toggle = 0;
 int ref_point = 256;
-int max_diff = 10;
+int current_freq = ref_point; // this is our old value, we must stay within the bounds of new_setting/current_freq>=0.5, i.e. 2 times faster
 //----------------------------------------------------------------------
 void Stepper_SETUP(int DIR, int STEP)
 {
@@ -23,7 +23,7 @@ void Stepper_SETUP(int DIR, int STEP)
    // turn on CTC mode
    TCCR4B |= (1 << WGM12);
    // Set CS12 and CS10 bits for 1024 prescaler
-   TCCR4B |= (1 << CS12) | (1 << CS12);
+   TCCR4B |= (1 << CS12) | (1 << CS12);  
    // enable timer compare interrupt
    TIMSK4 |= (1 << OCIE4A);
   interrupts();             // enable all interrupts
@@ -31,34 +31,56 @@ void Stepper_SETUP(int DIR, int STEP)
 //----------------------------------------------------------------------
 void Stepper_Speed(int spd)
 {
-   if (spd<0)
+   if (spd<0) 
    {
-    if (STEPPER_direction==1)
-    {
+    if (STEPPER_direction==0) 
+    {      
       spd = 0;
+      current_freq = ref_point;
     }
-    else
+    else 
     {
       spd = -spd;
     }
-    STEPPER_direction = 0;
+    STEPPER_direction =1;
     digitalWrite(STEPPER_DIR_PIN,STEPPER_direction);
    }
-   else
+   else 
    {
-    STEPPER_direction = 1;
-    digitalWrite(STEPPER_DIR_PIN,STEPPER_direction);
+    if (STEPPER_direction==1) 
+    {      
+      spd = 0;
+      current_freq = ref_point;
+    }
+    STEPPER_direction = 0;
+    digitalWrite(STEPPER_DIR_PIN,STEPPER_direction); 
    }
+
 
    STEPPER_speed = ref_point-spd;
    if (STEPPER_speed>ref_point) STEPPER_speed = ref_point;
-   if (STEPPER_speed<1) STEPPER_speed = 1;
+   if (STEPPER_speed<10) STEPPER_speed = 10;
 
-   //Serial.print("Stepper speed: ");
-   //Serial.println(STEPPER_speed);
+  //Serial.println(STEPPER_speed);
+   /*Serial.print("Old = ");
+   Serial.print(current_freq);
+   Serial.print(" New = ");
+   Serial.print(STEPPER_speed);  */
+   /*Serial.print(" Scale = ");
+   Serial.print(scale);
+   Serial.print(" SetSpeed = ");
+   Serial.println(STEPPER_speed);  */ 
+
+   /*float scale = abs(STEPPER_speed*1.0/current_freq);
+   if (scale<0.999) STEPPER_speed = (int)0.999*current_freq;*/
+   
+   //Serial.print("Old value: "); Serial.print(current_freq);
+   // Serial.print("new value: "); Serial.println(STEPPER_speed);
+   current_freq = STEPPER_speed;
+
 
    TCNT4  = 0;
-   OCR4A = STEPPER_speed;
+   OCR4A = STEPPER_speed;   
 }
 //----------------------------------------------------------------------
 void Stepper_ENABLE(bool en)
