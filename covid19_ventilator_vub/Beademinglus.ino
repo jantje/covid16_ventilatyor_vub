@@ -4,7 +4,7 @@
  *  Created on: 23 mrt. 2020
  *      Author: jan
  */
-#ifndef  __IN_ECLIPSE__
+#ifndef  SERIAL_TX_BUFFER_SIZE
 
 void beademing_loop();
 void beademing_setup();
