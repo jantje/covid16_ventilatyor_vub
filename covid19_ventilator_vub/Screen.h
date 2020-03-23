@@ -9,8 +9,6 @@
 #include "LiquidCrystal_I2C.h"
 class Screen {
     private:
-        uint8_t pinSDA;
-        uint8_t pinSDL;
         LiquidCrystal_I2C display;
         int flashFrequency;
         uint32_t flashTimer;
