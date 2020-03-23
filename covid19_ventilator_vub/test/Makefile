@@ -19,7 +19,7 @@ CXXFLAGS:=-I../\
 
 LDFLAGS:=-lgtest
 
-.PHONY: test
+.PHONY: test clean
 
 test: suite
 	./suite
@@ -37,6 +37,11 @@ suite: $(TEST_OBJS) $(OBJS) .deps
 		$(LDFLAGS)\
 	    -fprofile-arcs -ftest-coverage \
 		$< -o $@
+
+clean:
+	$(RM) $(OBJS) $(TEST_OBJS) suite
+	$(RM) -r .deps
+	$(RM) *.gcno
 
 .deps:
 	mkdir -p .deps
