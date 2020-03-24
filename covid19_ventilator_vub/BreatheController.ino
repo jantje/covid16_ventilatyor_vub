@@ -67,6 +67,10 @@ float BREATHE_getBPM()
 {
   return bpm;
 }
+void BREATHE_setBPM(float newBPM)
+{
+   bpm=newBPM;
+}
 //------------------------------------------------------------------------------
 void BREATHE_setToEXHALE(int end_switch)
 {

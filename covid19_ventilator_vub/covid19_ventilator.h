@@ -42,6 +42,7 @@ void BREATHE_CONTROL_setPointInhalePressure(float setting);
 float BREATHE_CONTROL_getPointInhalePressure();
 
 float BREATHE_getBPM();
+void BREATHE_setBPM(float newBPM);
 float BREATHE_getPID();
 
 void Stepper_ENABLE(bool en);
