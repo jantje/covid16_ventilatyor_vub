@@ -105,6 +105,7 @@ void UserInterface::loop() {
         if ((prefrequestedBPM != requestedBPM) && (lcdWrites < MAX_LCD_WRITES)) {
             myScreen.refreshValue_deci(requestedBPM, 12, 2);
             prefrequestedBPM = requestedBPM;
+            BREATHE_setBPM(((float) requestedBPM)/10.0);
             lcdWrites++;
         }
         static int prefRequestedTriggerPressure = -1;
@@ -117,7 +118,7 @@ void UserInterface::loop() {
 
 
         static int prefActualPressure = -1;
-        int actualPressure=BREATHE_CONTROL_getInhalePressure()*UPLIFT;
+        int actualPressure=getLastpatientPressure()*UPLIFT;
         if ((prefActualPressure != actualPressure) && (lcdWrites < MAX_LCD_WRITES)) {
             myScreen.refreshValue_deci(actualPressure, 0, 0);
             prefActualPressure = actualPressure;

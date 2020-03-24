@@ -31,3 +31,4 @@
 #define BUTTON_MUTE 45
 
 
+#define HIGH_PIN_PRESSURE_SENSOR 12

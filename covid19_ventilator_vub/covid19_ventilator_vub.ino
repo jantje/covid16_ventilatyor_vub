@@ -21,9 +21,11 @@ void setup() {
 	SerialOutput.println(F("done\nmySerialReader"));
 	mySerialReader.setup();
 	//TOFIX when sensors are not connected go into alarm instead of blocking
-	//SerialOutput.println(F("done\nbeademing"));
-	//beademing_setup();
+	SerialOutput.println(F("done\nbeademing"));
+	beademing_setup();
 	SerialOutput.println(F("done\nSetup Done"));
+	digitalWrite(HIGH_PIN_PRESSURE_SENSOR,HIGH);
+
 }
 
 // The loop function is called in an endless loop
@@ -34,8 +36,8 @@ void loop() {
 	PrefLoopMillis = loopMillis;
 	loopCounter++;
 
-	//TOFIX enable when done
-	//beademing_loop();
+	beademing_loop();
+
 	if (millis() - loopMillis <= 2) {
 		myAlarm.loop();
 	}
