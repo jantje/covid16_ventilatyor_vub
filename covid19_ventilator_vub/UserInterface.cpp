@@ -33,7 +33,7 @@ void UserInterface::setup() {
         BUTTON_TRIG_DOWN,
 
         BUTTON_MUTE,
-        BUTTOM_BREATH,
+        BUTTON_BREATH,
         BUTTON_MODE };
 
     for (unsigned int curButton = 0; curButton < NUMBUTTONS; curButton++) {
@@ -66,7 +66,7 @@ void UserInterface::loop() {
         requestedPressure=constrain(requestedPressure,0,1000*UPLIFT-1);
 
         static int breathHoldState =0; //0 off 1 on
-        if (digitalRead(BUTTOM_BREATH) == LOW) {
+        if (digitalRead(BUTTON_BREATH) == LOW) {
          if(breathHoldState==0){
              breathHoldState=1;
              Stepper_ENABLE(false);
@@ -124,9 +124,10 @@ void UserInterface::loop() {
             prefActualPressure = actualPressure;
             lcdWrites++;
         }
-        //TOFIX where do I get this info
+        //TOFIX where do I get this info ==> from lastVolume in breath control actually a convertion from nr of steps to volume
+        //      or it can be replaced by reading an encoder
         static int prefActualTargetVolume = -1;
-        int actualTargetVolume=0;
+        int actualTargetVolume=getLastVolume()*UPLIFT;
         if ((prefActualTargetVolume != actualTargetVolume) && (lcdWrites < MAX_LCD_WRITES)) {
             myScreen.refreshValue_deci(actualTargetVolume, 0, 1);
             prefActualTargetVolume = actualTargetVolume;

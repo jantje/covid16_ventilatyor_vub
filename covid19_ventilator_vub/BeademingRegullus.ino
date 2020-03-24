@@ -51,6 +51,8 @@ void beademing_loop()
       LOG("3");
       Stepper_Speed((int)angle);     
       LOG("4");
+      int nrSteps = Stepper_getMaxSteps();
+      /// TODO convert nrsteps to volume (curve fitting or lookup table)
       BREATHE_setToEXHALE(END_SWITCH_VALUE_STOP);
       LOG("5");
       BREATHE_setToINHALE(END_SWITCH_VALUE_START);

@@ -5,6 +5,8 @@ int STEPPER_speed = 0;
 int STEPPER_direction = 0;
 unsigned int toggle = 0;
 int ref_point = 256;
+volatile unsigned int stepcount = 0;
+int maxstep = 0;
 int current_freq = ref_point; // this is our old value, we must stay within the bounds of new_setting/current_freq>=0.5, i.e. 2 times faster
 //----------------------------------------------------------------------
 void Stepper_SETUP(int DIR, int STEP)
@@ -90,7 +92,17 @@ void Stepper_ENABLE(bool en)
 //----------------------------------------------------------------------
 void Stepper_SetDirection(int dir)
 {
+  if ((dir == 1) && (STEPPER_direction == 0)){ //switch direction
+    stepcount = 0;
+  }
+  else
+  {
+    maxstep = stepcount;
+  }
+
   STEPPER_direction = dir;
+
+  
   digitalWrite(STEPPER_DIR_PIN,STEPPER_direction);
 }
 //----------------------------------------------------------------------
@@ -99,7 +111,18 @@ ISR(TIMER4_COMPA_vect)
   if ((STEPPER_speed>0)&&(STEPPER_enable))
   {
     digitalWrite(STEPPER_STEP_PIN,toggle);
+    stepcount++;
     toggle = !toggle;
   }
+}
+//----------------------------------------------------------------------
+int Stepper_getSteps(void)
+{
+  return stepcount;
+}
+//----------------------------------------------------------------------
+int Stepper_getMaxSteps(void)
+{
+  return maxstep;
 }
 //----------------------------------------------------------------------
