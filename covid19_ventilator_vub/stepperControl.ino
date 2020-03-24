@@ -1,6 +1,6 @@
 int STEPPER_DIR_PIN;
 int STEPPER_STEP_PIN;
-bool STEPPER_enable;
+bool STEPPER_enable=true;
 int STEPPER_speed = 0;
 int STEPPER_direction = 0;
 unsigned int toggle = 0;

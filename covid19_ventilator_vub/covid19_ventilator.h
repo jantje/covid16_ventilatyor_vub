@@ -45,4 +45,5 @@ float BREATHE_getBPM();
 float BREATHE_getPID();
 
 void Stepper_ENABLE(bool en);
+float getLastpatientPressure();
 
