@@ -21,6 +21,8 @@ typedef enum {
 #include "Alarm.h"
 #include "Logger.h"
 #include "SerialReader.h"
+#include "StepperControler.h"
+#include "Beademinglus.h"
 
 //Some global variabels to track performance
 extern uint32_t loopMillis;

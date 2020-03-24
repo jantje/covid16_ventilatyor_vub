@@ -1,9 +1,19 @@
+#include "StepperControler.h"
+#include <util/atomic.h>
+void Stepper_Speed(int spd);
+
+
 int STEPPER_DIR_PIN;
 int STEPPER_STEP_PIN;
 bool STEPPER_enable=true;
 int STEPPER_speed = 0;
 int STEPPER_direction = 0;
-unsigned int toggle = 0;
+volatile unsigned int toggle = 0;
+volatile uint32_t stepCounter=0;
+
+uint32_t stepper_GetStepsStepped(){
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){return stepCounter;}
+}
 int ref_point = 256;
 int current_freq = ref_point; // this is our old value, we must stay within the bounds of new_setting/current_freq>=0.5, i.e. 2 times faster
 //----------------------------------------------------------------------
@@ -42,8 +52,9 @@ void Stepper_Speed(int spd)
     {
       spd = -spd;
     }
-    STEPPER_direction =1;
-    digitalWrite(STEPPER_DIR_PIN,STEPPER_direction);
+    Stepper_SetDirection(1);
+//    STEPPER_direction =1;
+//    digitalWrite(STEPPER_DIR_PIN,STEPPER_direction);
    }
    else 
    {
@@ -52,8 +63,9 @@ void Stepper_Speed(int spd)
       spd = 0;
       current_freq = ref_point;
     }
-    STEPPER_direction = 0;
-    digitalWrite(STEPPER_DIR_PIN,STEPPER_direction); 
+    Stepper_SetDirection(0);
+//    STEPPER_direction = 0;
+//    digitalWrite(STEPPER_DIR_PIN,STEPPER_direction);
    }
 
 
@@ -90,8 +102,11 @@ void Stepper_ENABLE(bool en)
 //----------------------------------------------------------------------
 void Stepper_SetDirection(int dir)
 {
+	if(dir!=STEPPER_direction){
   STEPPER_direction = dir;
   digitalWrite(STEPPER_DIR_PIN,STEPPER_direction);
+  stepCounter=0;
+	}
 }
 //----------------------------------------------------------------------
 ISR(TIMER4_COMPA_vect)
@@ -100,6 +115,7 @@ ISR(TIMER4_COMPA_vect)
   {
     digitalWrite(STEPPER_STEP_PIN,toggle);
     toggle = !toggle;
+    stepCounter++;
   }
 }
 //----------------------------------------------------------------------

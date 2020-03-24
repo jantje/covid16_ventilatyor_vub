@@ -30,6 +30,9 @@ float PLUNGER_POSITION = 0;
 
 enum BREATHE_PHASE{INHALE, EXHALE, BLOCK}; 
 BREATHE_PHASE Breathe_mode = INHALE;
+bool isInhale(){
+	return Breathe_mode==INHALE;
+}
 
 int EXHALE_TIME = 0;
 //------------------------------------------------------------------------------

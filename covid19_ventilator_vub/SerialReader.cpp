@@ -24,10 +24,19 @@ void SerialReader::loop() {
 
 			int freq;
 			if (sscanf(newMessage + 5, "%d", &freq) == 1) {
-				if(freq==-1){
+				if (freq == -1) {
 					myLogger.resend();
-				}else{
-				myLogger.setLogDelay(freq);
+				} else {
+					myLogger.setLogDelay(freq);
+				}
+			}
+		} else if (strncmp(newMessage, "STEPS=", 6) == 0) {
+			int numSteps;
+			if (sscanf(newMessage + 6, "%d", &numSteps) == 1) {
+				if (numSteps > 100) {
+					Serial.print("Setting steps to: ");
+					Serial.println(numSteps);
+					setNumberOfSteps(numSteps);
 				}
 			}
 		}

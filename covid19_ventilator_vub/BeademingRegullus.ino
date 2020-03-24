@@ -7,6 +7,15 @@ unsigned int DIR_PIN=10;
 unsigned long motor_time;
 enum motor_state_t{UP,DOWN};
 motor_state_t motor_state=DOWN;
+uint32_t numberOfSteps=1000;
+bool isInhale();
+void setNumberOfSteps(uint32_t newNumberOfSteps){
+	numberOfSteps=newNumberOfSteps;
+}
+uint32_t getNumberOfSteps( ){
+	return numberOfSteps;
+}
+
 #define LOG(x)    // 	SerialOutput.println(F(x));delay (10);
 
 float CurrentPressurePatient;
@@ -26,35 +35,27 @@ void beademing_setup()
 //-----------------------------------------    END OF SETUP ------------------------------------------
 void beademing_loop()
 {   
-	LOG("00");
   BREATHE_CONTROL_setPointInhalePressure(75);  
-	LOG("01");
   unsigned long new_time = millis();
-	LOG("02");
   //--- read buttons here
   int END_SWITCH_VALUE_STOP = digitalRead(ENDSIWTCH_FULL_PIN);
-	LOG("02");
   int END_SWITCH_VALUE_START = digitalRead(ENDSWITCH_PUSH_PIN);
-	LOG("03");
 
   if (new_time-oldTime> time_diff)
   {
-		LOG("04");
     //if (BME280_readPressurePatient(&CurrentPressurePatient))
     {   
-
-    	LOG("1");
       BREATHE_setCurrentTime(new_time);      
       //BREATHE_CONTROL_setInhalePressure(CurrentPressurePatient);
-      LOG("2");
       float angle = BREATHE_CONTROL_Regulate();  
-      LOG("3");
       Stepper_Speed((int)angle);     
-      LOG("4");
+      if( ( stepper_GetStepsStepped() >numberOfSteps) && isInhale()){
+    	  BREATHE_setToEXHALE(1);
+      }else{
       BREATHE_setToEXHALE(END_SWITCH_VALUE_STOP);
-      LOG("5");
       BREATHE_setToINHALE(END_SWITCH_VALUE_START);
-      LOG("6");
+      }
+
       
       /*Serial.print("P:");
       Serial.print(CurrentPressurePatient);       

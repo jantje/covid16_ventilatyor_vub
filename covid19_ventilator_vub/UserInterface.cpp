@@ -90,13 +90,13 @@ void UserInterface::loop() {
         }
         int lcdWrites = 0;
         static int prefRequestedPressure = -1;
-        if ((prefRequestedPressure != requestedPressure) && (lcdWrites < MAX_LCD_WRITES)) {
+       if ((prefRequestedPressure != requestedPressure) && (lcdWrites < MAX_LCD_WRITES)) {
             myScreen.refreshValue_deci(requestedPressure, 12, 0);
             prefRequestedPressure = requestedPressure;
             lcdWrites++;
-        }
+       }
         static int prefrequestedTargetVolume = -1;
-        if ((prefrequestedTargetVolume != requestedTargetVolume) && (lcdWrites < MAX_LCD_WRITES)) {
+       if ((prefrequestedTargetVolume != requestedTargetVolume) && (lcdWrites < MAX_LCD_WRITES)) {
             myScreen.refreshValue_deci(requestedTargetVolume, 12, 1);
             prefrequestedTargetVolume = requestedTargetVolume;
             lcdWrites++;

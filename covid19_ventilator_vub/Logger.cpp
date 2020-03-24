@@ -67,6 +67,11 @@ void Logger::loop() {
 			SerialOutput.print("Max loop :");
 			SerialOutput.println(maxLoopDuration);
 			maxLoopDuration = 0;
+			SerialOutput.print("Steps done :");
+			SerialOutput.println(stepper_GetStepsStepped());
+			SerialOutput.print("Steps todo :");
+			SerialOutput.println(getNumberOfSteps());
+
 		}
 	}
 }
