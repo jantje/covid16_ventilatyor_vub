@@ -8,6 +8,7 @@ float BREATHING_SPEED_SETPOINT = 10; // in # per second
 float current_inhale_pressure = 0;
 
 float Vlung = 0;
+float lastVolume = 0.0;
 bool is_blocking = false;
 
 float MAX_DISPLACEMENT=500;
@@ -72,13 +73,16 @@ void BREATHE_setBPM(float newBPM)
    bpm=newBPM;
 }
 //------------------------------------------------------------------------------
-void BREATHE_setToEXHALE(int end_switch)
+void BREATHE_setToEXHALE(int end_switch, float volume)
 {
+  //TODO do we not have to add volume > requestedTargetVolume ??? 
+  //if (((end_switch==1) || (volume > requestedTargetVolume)) && (Breathe_mode == INHALE))
   if ((end_switch==1)&&(Breathe_mode==INHALE))
   {
     PID_value_I=0;
     PID_value_P=0;
     Breathe_mode=EXHALE; 
+    lastVolume = volume;
     //-- compute exhale time
     unsigned long time_diff = current_time-previous_exhale_time;
     bpm = 60000.0/time_diff;
@@ -115,4 +119,9 @@ float BREATHE_CONTROL_Regulate()
     }    
 }
 //------------------------------------------------------------------------------
+float getLastVolume()
+{
+  return lastVolume;
+}
+
 #endif
